@@ -135,6 +135,12 @@ export class LocalQueryBuilder {
           if (rowData.available_days && typeof rowData.available_days !== 'string') {
             rowData.available_days = JSON.stringify(rowData.available_days);
           }
+          if (rowData.question_ids && typeof rowData.question_ids !== 'string') {
+            rowData.question_ids = JSON.stringify(rowData.question_ids);
+          }
+          if (rowData.answers_payload && typeof rowData.answers_payload !== 'string') {
+            rowData.answers_payload = JSON.stringify(rowData.answers_payload);
+          }
           if (typeof rowData.is_correct === 'boolean') {
             rowData.is_correct = rowData.is_correct ? 1 : 0;
           }
@@ -157,6 +163,12 @@ export class LocalQueryBuilder {
           if (inserted.available_days && typeof inserted.available_days === 'string') {
             try { inserted.available_days = JSON.parse(inserted.available_days); } catch {}
           }
+          if (inserted.question_ids && typeof inserted.question_ids === 'string') {
+            try { inserted.question_ids = JSON.parse(inserted.question_ids); } catch {}
+          }
+          if (inserted.answers_payload && typeof inserted.answers_payload === 'string') {
+            try { inserted.answers_payload = JSON.parse(inserted.answers_payload); } catch {}
+          }
           if (inserted.is_correct !== undefined) {
             inserted.is_correct = Boolean(inserted.is_correct);
           }
@@ -177,6 +189,12 @@ export class LocalQueryBuilder {
         }
         if (payload.available_days && typeof payload.available_days !== 'string') {
           payload.available_days = JSON.stringify(payload.available_days);
+        }
+        if (payload.question_ids && typeof payload.question_ids !== 'string') {
+          payload.question_ids = JSON.stringify(payload.question_ids);
+        }
+        if (payload.answers_payload && typeof payload.answers_payload !== 'string') {
+          payload.answers_payload = JSON.stringify(payload.answers_payload);
         }
         if (typeof payload.is_correct === 'boolean') {
           payload.is_correct = payload.is_correct ? 1 : 0;
@@ -328,6 +346,12 @@ export class LocalQueryBuilder {
       }
       if (item.available_days && typeof item.available_days === 'string') {
         try { item.available_days = JSON.parse(item.available_days); } catch {}
+      }
+      if (item.question_ids && typeof item.question_ids === 'string') {
+        try { item.question_ids = JSON.parse(item.question_ids); } catch {}
+      }
+      if (item.answers_payload && typeof item.answers_payload === 'string') {
+        try { item.answers_payload = JSON.parse(item.answers_payload); } catch {}
       }
       if (item.is_correct !== undefined) {
         item.is_correct = Boolean(item.is_correct);

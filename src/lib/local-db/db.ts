@@ -23,6 +23,433 @@ function getSqliteModule() {
   return null;
 }
 
+export const ALL_SEED_QUESTIONS = [
+  // Direito Constitucional - Art. 5º
+  {
+    id: 'q-const-01',
+    topic_id: 'top-1',
+    subject_id: 'subj-const',
+    statement: 'Nos termos da Constituição Federal de 1988, a respeito dos direitos e garantias fundamentais previstos no Artigo 5º, assinale a alternativa juridicamente correta:',
+    options: [
+      'A prática do racismo constitui crime inafiançável e imprescritível, sujeito à pena de reclusão, nos termos da lei.',
+      'A casa é asilo inviolável do indivíduo, não podendo nela penetrar ninguém durante a noite, mesmo em caso de flagrante delito.',
+      'É livre a manifestação do pensamento, sendo expressamente admitido o anonimato nas denúncias de caráter apócrifo.',
+      'Homens e mulheres são iguais em direitos e obrigações, salvo no tocante aos cargos de chefia do Poder Executivo.',
+      'A lei poderá restringir a publicidade dos atos processuais apenas e tão somente no âmbito dos processos criminais.'
+    ],
+    correct_option: 'A prática do racismo constitui crime inafiançável e imprescritível, sujeito à pena de reclusão, nos termos da lei.',
+    explanation: 'O Art. 5º, XLII, da CF/88 estabelece categoricamente: "a prática do racismo constitui crime inafiançável e imprescritível, sujeito à pena de reclusão, nos termos da lei". As demais assertivas violam expressamente a Carta Magna: o anonimato é vedado (inciso IV), o flagrante delito permite entrada noturna (inciso XI), e a igualdade de gênero é plena.',
+    difficulty: 'MEDIUM',
+  },
+  {
+    id: 'q-const-02',
+    topic_id: 'top-1',
+    subject_id: 'subj-const',
+    statement: 'De acordo com a jurisprudência sumulada do Supremo Tribunal Federal (Súmula Vinculante 11), o uso de algemas é admitido:',
+    options: [
+      'A critério discricionário exclusivo do policial condutor, sem necessidade de justificação por escrito.',
+      'Em casos de resistência e de fundado receio de fuga ou de perigo à integridade física própria ou alheia, justificada a excepcionalidade por escrito.',
+      'Apenas e tão somente após o trânsito em julgado da sentença condenatória.',
+      'Em qualquer prisão cautelar decorrente de mandado de prisão preventiva.',
+      'Exclusivamente no interior do tribunal durante a sessão plenária de julgamento.'
+    ],
+    correct_option: 'Em casos de resistência e de fundado receio de fuga ou de perigo à integridade física própria ou alheia, justificada a excepcionalidade por escrito.',
+    explanation: 'A Súmula Vinculante nº 11 do STF delimita que o uso de algemas só é lícito em caso de resistência e de fundado receio de fuga ou de perigo à integridade física própria ou alheia, devendo a excepcionalidade ser justificada por escrito, sob pena de responsabilidade e nulidade da prisão.',
+    difficulty: 'HARD',
+  },
+  {
+    id: 'q-const-03',
+    topic_id: 'top-1',
+    subject_id: 'subj-const',
+    statement: 'Em relação aos remédios constitucionais previstos no Artigo 5º da Constituição Federal de 1988, assinale a opção correta:',
+    options: [
+      'O mandado de segurança coletivo pode ser impetrado por partido político com representação no Congresso Nacional.',
+      'O habeas corpus pode ser impetrado por pessoa jurídica em favor de sua própria liberdade de locomoção.',
+      'O mandado de injunção destina-se a assegurar o conhecimento de informações relativas à pessoa do impetrante constantes de registros governamentais.',
+      'A ação popular exige o pagamento prévio de custas judiciais e honorários de sucumbência em qualquer circunstância.',
+      'O habeas data é remédio constitucional oneroso que depende do recolhimento de taxas judiciárias estaduais.'
+    ],
+    correct_option: 'O mandado de segurança coletivo pode ser impetrado por partido político com representação no Congresso Nacional.',
+    explanation: 'Nos termos do Art. 5º, LXX, "a", da CF/88, o mandado de segurança coletivo pode ser impetrado por partido político com representação no Congresso Nacional. Pessoa jurídica não possui liberdade corporal de locomoção (HC inadmissível para PJ). Conhecimento de informações pessoais é tutelado por Habeas Data (inciso LXXII). Ação popular é gratuita salvo má-fé comprovada (inciso LXXIII).',
+    difficulty: 'MEDIUM',
+  },
+  {
+    id: 'q-const-04',
+    topic_id: 'top-1',
+    subject_id: 'subj-const',
+    statement: 'A respeito do direito à inviolabilidade do domicílio, o Art. 5º, XI, da CF/88 preceitua que a casa é asilo inviolável do indivíduo. Assinale a hipótese em que é constitucionalmente legítimo o ingresso no domicílio durante a noite, sem o consentimento do morador:',
+    options: [
+      'Em caso de flagrante delito ou desastre, ou para prestar socorro.',
+      'Para cumprimento de determinação judicial fundamentada exarada pelo magistrado plantonista.',
+      'Para realização de busca e apreensão determinada pelo delegado de polícia condutor do inquérito.',
+      'Por requisição motivada do Ministério Público para apuração de crime contra a administração pública.',
+      'Em virtude de suspeita genérica ou denúncia anônima de contravenção penal.'
+    ],
+    correct_option: 'Em caso de flagrante delito ou desastre, ou para prestar socorro.',
+    explanation: 'O Art. 5º, XI, CF/88 prevê expressamente que ninguém na casa poderá penetrar sem consentimento do morador, salvo em caso de flagrante delito ou desastre, ou para prestar socorro (a qualquer hora do dia ou da noite); ou, durante o dia, por determinação judicial. Logo, à noite a determinação judicial não autoriza a entrada sem consentimento.',
+    difficulty: 'EASY',
+  },
+  // Direito Constitucional - Organização do Estado e Poderes
+  {
+    id: 'q-const-05',
+    topic_id: 'top-2',
+    subject_id: 'subj-const',
+    statement: 'No que concerne à repartição constitucional de competências na Federação Brasileira, compete privativamente à União legislar sobre:',
+    options: [
+      'Direito civil, comercial, penal, processual, eleitoral, agrário, marítimo, aeronáutico, espacial e do trabalho.',
+      'Direito tributário, financeiro, penitenciário, econômico e urbanístico.',
+      'Proteção e integração social das pessoas portadoras de deficiência e infância.',
+      'Procedimentos em matéria processual e custas dos serviços forenses.',
+      'Previdência social, proteção e defesa da saúde coletiva.'
+    ],
+    correct_option: 'Direito civil, comercial, penal, processual, eleitoral, agrário, marítimo, aeronáutico, espacial e do trabalho.',
+    explanation: 'O Art. 22, I, da CF/88 estabelece a clássica competência privativa da União: direito civil, comercial, penal, processual, eleitoral, agrário, marítimo, aeronáutico, espacial e do trabalho (mnemônico CAPACETE de PIMENTA). As demais matérias listadas são de competência legislativa concorrente entre União, Estados e DF (Art. 24).',
+    difficulty: 'MEDIUM',
+  },
+  {
+    id: 'q-const-06',
+    topic_id: 'top-2',
+    subject_id: 'subj-const',
+    statement: 'De acordo com o texto expresso da Constituição da República de 1988, NÃO será objeto de deliberação a proposta de emenda tendente a abolir:',
+    options: [
+      'A forma federativa de Estado e a separação dos Poderes.',
+      'O sistema presidencialista de governo republicano.',
+      'O voto obrigatório para os cidadãos maiores de 18 anos.',
+      'A estabilidade dos servidores públicos civis após o estágio probatório.',
+      'O mandato com duração fixa de quatro anos para os Chefes do Poder Executivo.'
+    ],
+    correct_option: 'A forma federativa de Estado e a separação dos Poderes.',
+    explanation: 'As cláusulas pétreas expressas do Art. 60, § 4º da CF/88 são: I - a forma federativa de Estado; II - o voto direto, secreto, universal e periódico (não a obrigatoriedade!); III - a separação dos Poderes; IV - os direitos e garantias individuais. Presidencialismo e estabilidade não são cláusulas pétreas.',
+    difficulty: 'MEDIUM',
+  },
+  // Direito Administrativo - Princípios
+  {
+    id: 'q-admin-01',
+    topic_id: 'top-3',
+    subject_id: 'subj-admin',
+    statement: 'O princípio da Administração Pública que veda a promoção pessoal de agentes públicos em obras, publicidades ou serviços públicos, com fulcro no Art. 37, §1º, da CF/88, denomina-se:',
+    options: [
+      'Princípio da Impessoalidade.',
+      'Princípio da Autotutela.',
+      'Princípio da Continuidade do Serviço Público.',
+      'Princípio da Subsidiariedade.',
+      'Princípio da Razoabilidade.'
+    ],
+    correct_option: 'Princípio da Impessoalidade.',
+    explanation: 'O Princípio da Impessoalidade (Art. 37, caput e §1º, CF/88) proíbe que nomes, símbolos ou imagens que caracterizem promoção pessoal de autoridades ou servidores constem de publicidade de atos, programas, obras, serviços e campanhas dos órgãos públicos.',
+    difficulty: 'EASY',
+  },
+  {
+    id: 'q-admin-03',
+    topic_id: 'top-3',
+    subject_id: 'subj-admin',
+    statement: 'Sobre o princípio da autotutela administrativa e a jurisprudência dominante consolidada na Súmula 473 do STF, assinale a afirmativa correta:',
+    options: [
+      'A Administração pode anular seus próprios atos quando eivados de vícios que os tornam ilegais, e revogá-los por motivo de conveniência ou oportunidade.',
+      'A revogação de um ato administrativo produz efeitos retroativos (ex tunc), desfazendo as situações pretéritas consolidadas.',
+      'A anulação de atos administrativos eivados de ilegalidade só produz efeitos prospectivos (ex nunc), mantendo os efeitos ilícitos passados.',
+      'A revogação de atos administrativos só pode ser validamente determinada pelo Poder Judiciário mediante ação popular.',
+      'O Poder Judiciário tem competência para revogar atos discricionários do Poder Executivo por considerar o mérito inconveniente.'
+    ],
+    correct_option: 'A Administração pode anular seus próprios atos quando eivados de vícios que os tornam ilegais, e revogá-los por motivo de conveniência ou oportunidade.',
+    explanation: 'Súmula 473/STF: "A administração pode anular seus próprios atos, quando eivados de vícios que os tornam ilegais, porque deles não se originam direitos; ou revogá-los, por motivo de conveniência ou oportunidade, respeitados os direitos adquiridos, e ressalvada, em todos os casos, a apreciação judicial". Anulação opera ex tunc; revogação opera ex nunc.',
+    difficulty: 'MEDIUM',
+  },
+  {
+    id: 'q-admin-04',
+    topic_id: 'top-3',
+    subject_id: 'subj-admin',
+    statement: 'A Súmula Vinculante nº 13 do Supremo Tribunal Federal estabelece diretrizes rigorosas contra o nepotismo no serviço público. A respeito do tema, assinale a opção correta:',
+    options: [
+      'A nomeação de cônjuge, companheiro ou parente em linha reta, colateral ou por afinidade, até o terceiro grau, para cargo em comissão viola a Constituição Federal.',
+      'A proibição do nepotismo não veda a nomeação recíproca de parentes entre poderes distintos (nepotismo cruzado).',
+      'O nepotismo é vedado unicamente para parentes consanguíneos de primeiro grau, permitindo-se livremente os graus subsequentes.',
+      'A proibição sumulada pelo STF aplica-se indistintamente a cargos de natureza estritamente política como Ministros de Estado.',
+      'A prática do nepotismo não configura ato atentatório aos princípios administrativos, configurando mera irregularidade leve.'
+    ],
+    correct_option: 'A nomeação de cônjuge, companheiro ou parente em linha reta, colateral ou por afinidade, até o terceiro grau, para cargo em comissão viola a Constituição Federal.',
+    explanation: 'A Súmula Vinculante 13 do STF estabelece que a nomeação de cônjuge, companheiro ou parente até o terceiro grau da autoridade nomeante para cargo em comissão, função gratificada ou cargo de direção viola expressamente a CF/88, inclusive na modalidade de designações recíprocas (nepotismo cruzado).',
+    difficulty: 'MEDIUM',
+  },
+  // Direito Administrativo - Atos Administrativos
+  {
+    id: 'q-admin-02',
+    topic_id: 'top-4',
+    subject_id: 'subj-admin',
+    statement: 'Em matéria de Atos Administrativos, assinale a opção que indica corretamente o atributo segundo o qual o ato administrativo se presume editado em conformidade com o ordenamento jurídico até prova em contrário:',
+    options: [
+      'Presunção de Legitimidade e Veracidade.',
+      'Autoexecutoriedade.',
+      'Tipicidade.',
+      'Imperatividade.',
+      'Exigibilidade.'
+    ],
+    correct_option: 'Presunção de Legitimidade e Veracidade.',
+    explanation: 'A presunção de legitimidade e veracidade é atributo inerente aos atos administrativos, operando de forma relativa (juris tantum), invertendo o ônus da prova para quem alega a ilegalidade do ato estatal.',
+    difficulty: 'EASY',
+  },
+  {
+    id: 'q-admin-05',
+    topic_id: 'top-4',
+    subject_id: 'subj-admin',
+    statement: 'No que concerne aos elementos (requisitos) de validade do ato administrativo, assinale a opção que indica o elemento que NÃO admite convalidação diante de vício insanável de legalidade:',
+    options: [
+      'Motivo e Finalidade.',
+      'Competência quando não exclusiva.',
+      'Forma quando não essencial à validade do ato.',
+      'Procedimento formal preliminar dispensável.',
+      'Órgão emissor em razão do tempo.'
+    ],
+    correct_option: 'Motivo e Finalidade.',
+    explanation: 'Na teoria das nulidades dos atos administrativos (Competência, Finalidade, Forma, Motivo e Objeto), admitem convalidação unicamente os vícios sanáveis de Competência (desde que não exclusiva) e de Forma (desde que não exigida expressamente em lei como requisito essencial ad solemnitatem). Motivo inexistente ou falso e Desvio de Finalidade são vícios insanáveis.',
+    difficulty: 'HARD',
+  },
+  {
+    id: 'q-admin-06',
+    topic_id: 'top-4',
+    subject_id: 'subj-admin',
+    statement: 'O atributo do ato administrativo pelo qual a Administração Pública pode compelir materialmente o administrado ao cumprimento da obrigação sem necessidade de autorização prévia judicial denomina-se:',
+    options: [
+      'Autoexecutoriedade.',
+      'Tipicidade vinculada.',
+      'Imperatividade passiva.',
+      'Presunção de Veracidade absoluta.',
+      'Irrevogabilidade fática.'
+    ],
+    correct_option: 'Autoexecutoriedade.',
+    explanation: 'A autoexecutoriedade é o atributo pelo qual o poder público pode executar imediatamente suas decisões administrativas, inclusive com emprego direto da força pública legalmente autorizada, sem precisar demandar judicialmente para fazê-lo valer (ex: interdição de fábrica clandestina).',
+    difficulty: 'EASY',
+  },
+  {
+    id: 'q-admin-07',
+    topic_id: 'top-4',
+    subject_id: 'subj-admin',
+    statement: 'A respeito do Poder de Polícia administrativa, assinale a alternativa juridicamente correta:',
+    options: [
+      'Incide precipuamente sobre bens, direitos e atividades, visando ao bem-estar e à ordem da coletividade.',
+      'Tem caráter exclusivamente punitivo-repressivo e atua sobre pessoas que cometeram crimes penais.',
+      'É privativo de corporações militares de segurança pública estadual.',
+      'Não admite qualquer delegação a entidades da administração indireta, mesmo com capital 100% público.',
+      'Impede a aplicação de multas pecuniárias pela via administrativa direta.'
+    ],
+    correct_option: 'Incide precipuamente sobre bens, direitos e atividades, visando ao bem-estar e à ordem da coletividade.',
+    explanation: 'A polícia administrativa atua sobre bens, direitos e atividades de particulares em prol do interesse público geral (fiscalizações tributárias, sanitárias, ambientais e de trânsito). O STF (Tema 532) autorizou a delegação das fases de fiscalização e consentimento para empresas estatais prestadoras de serviços públicos não concorrenciais.',
+    difficulty: 'MEDIUM',
+  },
+  // Língua Portuguesa - Interpretação e Compreensão
+  {
+    id: 'q-port-02',
+    topic_id: 'top-5',
+    subject_id: 'subj-port',
+    statement: 'No fragmento: "O advento de sistemas inteligentes não extingue a necessidade da capacidade analítica humana; ao contrário, eleva o discernimento crítico à condição de prerrogativa indispensável", a expressão sublinhada "ao contrário" estabelece uma relação discursiva de:',
+    options: [
+      'Oposição enfática e retificação argumentativa.',
+      'Conclusão lógica decorrente da assertiva inicial.',
+      'Condição causal imperativa.',
+      'Concessão mitigadora do posicionamento do autor.',
+      'Explicação puramente descritiva e cronológica.'
+    ],
+    correct_option: 'Oposição enfática e retificação argumentativa.',
+    explanation: 'O articulador textual "ao contrário" (ou "pelo contrário") funciona como operador argumentativo adversativo de contraposição direta e retificação, reforçando a tese oposta àquela que acabou de ser negada pelo termo "não extingue".',
+    difficulty: 'EASY',
+  },
+  {
+    id: 'q-port-03',
+    topic_id: 'top-5',
+    subject_id: 'subj-port',
+    statement: 'Em relação aos mecanismos de coesão referencial no texto, assinale a opção em que o termo em destaque opera como anáfora textual legítima:',
+    options: [
+      'Os concurseiros dedicam horas aos simulados. Esses estudantes sabem que a prática leva à excelência.',
+      'Aprovamos os seguintes tópicos: ética pública, redação oficial e noções de informática.',
+      'Só desejo isto com urgência: a publicação da nomeação no Diário Oficial da União.',
+      'Eram estes os motivos expostos: falta de tempo livre, cansaço e acúmulo de tarefas.',
+      'Antes de qualquer inferência, é primordial considerar a seguinte premissa básica.'
+    ],
+    correct_option: 'Os concurseiros dedicam horas aos simulados. Esses estudantes sabem que a prática leva à excelência.',
+    explanation: 'A anáfora consiste no mecanismo coesivo em que um pronome ou expressão recupera um termo mencionado anteriormente no texto. "Esses estudantes" retoma anafóricamente "Os concurseiros". Nas outras opções (isto, estes, seguintes), há catáfora, pois apontam para elementos que ainda serão revelados adiante.',
+    difficulty: 'MEDIUM',
+  },
+  {
+    id: 'q-port-04',
+    topic_id: 'top-5',
+    subject_id: 'subj-port',
+    statement: 'Texto que tem como objetivo primordial defender um ponto de vista por meio de argumentos sólidos, dados objetivos e encadeamento lógico visando persuadir o interlocutor classifica-se predominantemente como:',
+    options: [
+      'Dissertativo-argumentativo.',
+      'Narrativo ficcional.',
+      'Injuntivo instrucional.',
+      'Descritivo estático.',
+      'Lírico confessional.'
+    ],
+    correct_option: 'Dissertativo-argumentativo.',
+    explanation: 'O texto dissertativo-argumentativo caracteriza-se pela apresentação de uma tese central defendida por meio de argumentos, fatos, raciocínios e dados comprobatórios, objetivando convencer ou persuadir o leitor acerca da validade daquele posicionamento.',
+    difficulty: 'EASY',
+  },
+  // Língua Portuguesa - Concordância, Regência e Pontuação
+  {
+    id: 'q-port-01',
+    topic_id: 'top-6',
+    subject_id: 'subj-port',
+    statement: 'Assinale a alternativa que apresenta a oração em estrita conformidade com a norma-padrão de concordância verbal:',
+    options: [
+      'Fazem dez anos que os novos métodos de auditoria foram implementados na repartição.',
+      'Haviam muitos candidatos inscritos no processo seletivo deste certame.',
+      'Houve bastantes dúvidas durante a aplicação da prova discursiva.',
+      'Precisam-se de novos servidores capacitados em análise de dados públicos.',
+      'Mais de um concurseiro cumprimentaram-se cordialmente antes do início da prova.'
+    ],
+    correct_option: 'Houve bastantes dúvidas durante a aplicação da prova discursiva.',
+    explanation: 'O verbo "haver" no sentido de existir ou ocorrer é impessoal e deve ficar na 3ª pessoa do singular ("Houve dúvidas"). "Bastantes" funciona como pronome adjetivo (= muitas) e concorda com "dúvidas". Nas outras opções: "Faz dez anos" (tempo decorrido é impessoal), "Havia muitos" (impessoal), "Precisa-se de novos servidores" (voz passiva com índice de indeterminação não flexiona).',
+    difficulty: 'MEDIUM',
+  },
+  {
+    id: 'q-port-05',
+    topic_id: 'top-6',
+    subject_id: 'subj-port',
+    statement: 'Assinale a alternativa em que o uso do acento grave indicativo de crase está empregado em inteira obediência à norma-padrão da Língua Portuguesa:',
+    options: [
+      'O candidato dedicou o final de semana à revisão dos conteúdos mais difíceis.',
+      'Estava disposto à estudar até altas horas da madrugada para garantir a aprovação.',
+      'Os concursados foram chamados um à um para a formalização do termo de posse.',
+      'Ele se referiu à ela com elevado respeito e cordialidade institucional.',
+      'O relatório técnico foi entregue à prazo pré-estabelecido pela comissão julgadora.'
+    ],
+    correct_option: 'O candidato dedicou o final de semana à revisão dos conteúdos mais difíceis.',
+    explanation: 'O verbo "dedicar" rege a preposição "a" (dedicar algo a...), e o substantivo feminino "revisão" admite o artigo definido "a" (a + a = à). Nas demais opções o uso é incorreto: antes de verbo ("à estudar"), em locuções de palavras repetidas ("um à um"), antes de pronome pessoal ("à ela") e antes de palavra masculina ("à prazo").',
+    difficulty: 'MEDIUM',
+  },
+  {
+    id: 'q-port-06',
+    topic_id: 'top-6',
+    subject_id: 'subj-port',
+    statement: 'No que concerne à regência verbal, assinale a frase que se encontra em perfeita consonância com a norma culta:',
+    options: [
+      'O servidor recém-empossado aspira a um cargo de chefia na repartição.',
+      'O candidato aspirava o ar puro e por isso aspirava o cargo de diretor público.',
+      'Custou para o concursando compreender a complexa regra de transição previdenciária.',
+      'O auditor assistiu o julgamento no tribunal com a função de testemunha ocular.',
+      'A população obedeceu o decreto municipal sem apresentar qualquer manifestação.'
+    ],
+    correct_option: 'O servidor recém-empossado aspira a um cargo de chefia na repartição.',
+    explanation: 'O verbo "aspirar" no sentido de almejar/pretender é transitivo indireto e exige a preposição "a" ("aspira a um cargo"). "Obedecer" exige preposição "a" ("obedeceu ao decreto"). A construção "custou para o concursando" é inadequada ao padrão culto, devendo ser "custou ao concursando compreender".',
+    difficulty: 'HARD',
+  },
+  {
+    id: 'q-port-07',
+    topic_id: 'top-6',
+    subject_id: 'subj-port',
+    statement: 'Em relação às regras canônicas de pontuação, assinale a opção em que a pontuação foi empregada de forma estritamente correta:',
+    options: [
+      'O resultado definitivo do certame, que era aguardado com grande expectativa por todos, foi publicado hoje.',
+      'O diretor da comissão organizadora, homologou as inscrições deferidas no prazo legal.',
+      'Todos os candidatos classificados, compareceram com pontualidade à prova de títulos.',
+      'Naquela manhã ensolarada os alunos, estudavam com dedicação e disciplina exemplar.',
+      'Após o encerramento do horário de prova, fiscais e candidatos, saíram em silêncio.'
+    ],
+    correct_option: 'O resultado definitivo do certame, que era aguardado com grande expectativa por todos, foi publicado hoje.',
+    explanation: 'A oração adjetiva explicativa "que era aguardado com grande expectativa por todos" deve vir isolada por vírgulas. Nas outras alternativas cometeu-se o erro de separar com vírgula o sujeito de seu respectivo predicado ("O diretor... homologou", "Todos os candidatos... compareceram").',
+    difficulty: 'EASY',
+  },
+  // RLM - Proposições, Conectivos e Tabelas-Verdade
+  {
+    id: 'q-rlm-02',
+    topic_id: 'top-7',
+    subject_id: 'subj-rlm',
+    statement: 'Dadas as proposições simples P: "O candidato resolve questões diariamente" e Q: "O candidato obtém a aprovação", a proposição condicional composta "P -> Q" será logicamente FALSA se, e somente se:',
+    options: [
+      'P for verdadeira e Q for falsa.',
+      'P for falsa e Q for verdadeira.',
+      'P for falsa e Q for falsa.',
+      'P for verdadeira e Q for verdadeira.',
+      'Tanto P quanto Q assumirem valor lógico indeterminado.'
+    ],
+    correct_option: 'P for verdadeira e Q for falsa.',
+    explanation: 'Pela tabela-verdade fundamental da condicional lógica (P -> Q), a proposição só é FALSA no caso em que a premissa/antecedente é Verdadeira e o consequente é Falso (caso clássico conhecido como "Vera Fischer é Falsa"). Em todos os demais casos (V->V, F->V, F->F), a condicional é Verdadeira.',
+    difficulty: 'EASY',
+  },
+  {
+    id: 'q-rlm-03',
+    topic_id: 'top-7',
+    subject_id: 'subj-rlm',
+    statement: 'Considere a afirmação categórica: "Todo fiscal de tributos domina a legislação contábil". A negação lógica correta dessa sentença é:',
+    options: [
+      'Existe pelo menos um fiscal de tributos que não domina a legislação contábil.',
+      'Nenhum fiscal de tributos domina a legislação contábil.',
+      'Todos os fiscais de tributos não dominam a legislação contábil.',
+      'Todo aquele que domina a legislação contábil é fiscal de tributos.',
+      'Ninguém domina a legislação contábil no órgão fiscal.'
+    ],
+    correct_option: 'Existe pelo menos um fiscal de tributos que não domina a legislação contábil.',
+    explanation: 'Para negar o quantificador universal afirmativo "Todo A é B", deve-se utilizar o quantificador existencial com negação do predicado: "Algum A não é B", "Existe pelo menos um A que não é B" ou "Pelo menos um A não é B". Nunca se nega "Todo" com "Nenhum".',
+    difficulty: 'MEDIUM',
+  },
+  {
+    id: 'q-rlm-04',
+    topic_id: 'top-7',
+    subject_id: 'subj-rlm',
+    statement: 'Na lógica matemática proposicional, uma proposição composta cuja tabela-verdade resulta invariavelmente em valor lógico VERDADEIRO para quaisquer combinações dos valores das proposições simples componentes é chamada de:',
+    options: [
+      'Tautologia.',
+      'Contradição.',
+      'Contingência.',
+      'Equivocidade.',
+      'Silogismo nulo.'
+    ],
+    correct_option: 'Tautologia.',
+    explanation: 'Tautologia é a proposição composta que é sempre verdadeira, independentemente dos valores lógicos das proposições simples que a compõem (ex: P ou ~P). Se for sempre falsa, é uma contradição. Se puder ser verdadeira ou falsa dependendo dos valores simples, é uma contingência.',
+    difficulty: 'EASY',
+  },
+  // RLM - Equivalências e Negação
+  {
+    id: 'q-rlm-01',
+    topic_id: 'top-8',
+    subject_id: 'subj-rlm',
+    statement: 'Considere a proposição lógica condicional: "Se o candidato estuda com constância, então ele é aprovado no concurso". A negação lógica rigorosa dessa proposição é expressa por:',
+    options: [
+      'O candidato estuda com constância e não é aprovado no concurso.',
+      'Se o candidato não estuda com constância, então ele não é aprovado.',
+      'O candidato não estuda com constância ou é aprovado no concurso.',
+      'O candidato não é aprovado no concurso e não estuda com constância.',
+      'Se o candidato for aprovado no concurso, então ele estudou com constância.'
+    ],
+    correct_option: 'O candidato estuda com constância e não é aprovado no concurso.',
+    explanation: 'Pela regra de equivalência e negação da condicional ~(p -> q) <-> p ^ ~q (conhecida mnemônica "MANÉ": Mantém a primeira E Nega a segunda). Portanto: "O candidato estuda com constância E não é aprovado no concurso".',
+    difficulty: 'MEDIUM',
+  },
+  {
+    id: 'q-rlm-05',
+    topic_id: 'top-8',
+    subject_id: 'subj-rlm',
+    statement: 'Assinale a alternativa que apresenta uma proposição logicamente equivalente à condicional: "Se o servidor atua com zelo, então a sociedade é beneficiada":',
+    options: [
+      'Se a sociedade não é beneficiada, então o servidor não atua com zelo.',
+      'Se a sociedade é beneficiada, então o servidor atua com zelo.',
+      'Se o servidor não atua com zelo, então a sociedade não é beneficiada.',
+      'O servidor atua com zelo e a sociedade não é beneficiada.',
+      'O servidor não atua com zelo e a sociedade é beneficiada.'
+    ],
+    correct_option: 'Se a sociedade não é beneficiada, então o servidor não atua com zelo.',
+    explanation: 'A equivalência lógica contrapositiva da condicional (P -> Q) estabelece que (P -> Q) <-> (~Q -> ~P) [inverte e nega ambas]. Portanto: "Se a sociedade não é beneficiada (~Q), então o servidor não atua com zelo (~P)".',
+    difficulty: 'MEDIUM',
+  },
+  {
+    id: 'q-rlm-06',
+    topic_id: 'top-8',
+    subject_id: 'subj-rlm',
+    statement: 'Segundo as Leis de Morgan, a negação lógica rigorosa da proposição conjuntiva "O candidato estuda Direito E pratica exercícios físicos" é:',
+    options: [
+      'O candidato não estuda Direito OU não pratica exercícios físicos.',
+      'O candidato não estuda Direito E não pratica exercícios físicos.',
+      'Se o candidato não estuda Direito, então não pratica exercícios físicos.',
+      'O candidato estuda Direito OU pratica exercícios físicos.',
+      'O candidato não estuda Direito mas pratica exercícios físicos.'
+    ],
+    correct_option: 'O candidato não estuda Direito OU não pratica exercícios físicos.',
+    explanation: 'Pela 1ª Lei de De Morgan, a negação de uma conjunção ~(P ^ Q) equivale logicamente à disjunção das negações (~P v ~Q). Logo: "O candidato não estuda Direito OU não pratica exercícios físicos".',
+    difficulty: 'EASY',
+  }
+];
+
 let dbInstance: any = null;
 
 export function getLocalDatabase(): any {
@@ -213,10 +640,34 @@ export function getLocalDatabase(): any {
       why_important TEXT,
       created_at TEXT DEFAULT (datetime('now'))
     );
+
+    CREATE TABLE IF NOT EXISTS simulados (
+      id TEXT PRIMARY KEY,
+      user_id TEXT NOT NULL,
+      exam_id TEXT NOT NULL,
+      title TEXT NOT NULL,
+      mode TEXT DEFAULT 'GENERAL',
+      subject_filter TEXT,
+      total_questions INTEGER NOT NULL,
+      correct_answers INTEGER DEFAULT 0,
+      wrong_answers INTEGER DEFAULT 0,
+      unanswered INTEGER DEFAULT 0,
+      time_limit_minutes INTEGER,
+      time_spent_seconds INTEGER DEFAULT 0,
+      score_percentage REAL DEFAULT 0,
+      status TEXT DEFAULT 'IN_PROGRESS',
+      question_ids TEXT NOT NULL,
+      answers_payload TEXT,
+      created_at TEXT DEFAULT (datetime('now')),
+      completed_at TEXT
+    );
   `);
 
   // Auto-seed if exams table is empty
   seedLocalDatabaseIfEmpty(db);
+
+  // Ensure latest questions are present
+  ensureQuestionsSeeded(db);
 
   dbInstance = db;
   return db;
@@ -302,115 +753,12 @@ function seedLocalDatabaseIfEmpty(db: any) {
   }
 
   // 6. High Quality Realistic Questions
-  const questionsData = [
-    // Direito Constitucional - Art. 5º
-    {
-      id: 'q-const-01',
-      topic_id: 'top-1',
-      subject_id: 'subj-const',
-      statement: 'Nos termos da Constituição Federal de 1988, a respeito dos direitos e garantias fundamentais previstos no Artigo 5º, assinale a alternativa juridicamente correta:',
-      options: [
-        'A prática do racismo constitui crime inafiançável e imprescritível, sujeito à pena de reclusão, nos termos da lei.',
-        'A casa é asilo inviolável do indivíduo, não podendo nela penetrar ninguém durante a noite, mesmo em caso de flagrante delito.',
-        'É livre a manifestação do pensamento, sendo expressamente admitido o anonimato nas denúncias de caráter apócrifo.',
-        'Homens e mulheres são iguais em direitos e obrigações, salvo no tocante aos cargos de chefia do Poder Executivo.',
-        'A lei poderá restringir a publicidade dos atos processuais apenas e tão somente no âmbito dos processos criminais.'
-      ],
-      correct_option: 'A prática do racismo constitui crime inafiançável e imprescritível, sujeito à pena de reclusão, nos termos da lei.',
-      explanation: 'O Art. 5º, XLII, da CF/88 estabelece categoricamente: "a prática do racismo constitui crime inafiançável e imprescritível, sujeito à pena de reclusão, nos termos da lei". As demais assertivas violam expressamente a Carta Magna: o anonimato é vedado (inciso IV), o flagrante delito permite entrada noturna (inciso XI), e a igualdade de gênero é plena.',
-      difficulty: 'MEDIUM',
-    },
-    {
-      id: 'q-const-02',
-      topic_id: 'top-1',
-      subject_id: 'subj-const',
-      statement: 'De acordo com a jurisprudência sumulada do Supremo Tribunal Federal (Súmula Vinculante 11), o uso de algemas é admitido:',
-      options: [
-        'A critério discricionário exclusivo do policial condutor, sem necessidade de justificação por escrito.',
-        'Em casos de resistência e de fundado receio de fuga ou de perigo à integridade física própria ou alheia, justificada a excepcionalidade por escrito.',
-        'Apenas e tão somente após o trânsito em julgado da sentença condenatória.',
-        'Em qualquer prisão cautelar decorrente de mandado de prisão preventiva.',
-        'Exclusivamente no interior do tribunal durante a sessão plenária de julgamento.'
-      ],
-      correct_option: 'Em casos de resistência e de fundado receio de fuga ou de perigo à integridade física própria ou alheia, justificada a excepcionalidade por escrito.',
-      explanation: 'A Súmula Vinculante nº 11 do STF delimita que o uso de algemas só é lícito em caso de resistência e de fundado receio de fuga ou de perigo à integridade física própria ou alheia, devendo a excepcionalidade ser justificada por escrito, sob pena de responsabilidade e nulidade da prisão.',
-      difficulty: 'HARD',
-    },
-    // Direito Administrativo - Princípios
-    {
-      id: 'q-admin-01',
-      topic_id: 'top-3',
-      subject_id: 'subj-admin',
-      statement: 'O princípio da Administração Pública que veda a promoção pessoal de agentes públicos em obras, publicidades ou serviços públicos, com fulcro no Art. 37, §1º, da CF/88, denomina-se:',
-      options: [
-        'Princípio da Impessoalidade.',
-        'Princípio da Autotutela.',
-        'Princípio da Continuidade do Serviço Público.',
-        'Princípio da Subsidiariedade.',
-        'Princípio da Razoabilidade.'
-      ],
-      correct_option: 'Princípio da Impessoalidade.',
-      explanation: 'O Princípio da Impessoalidade (Art. 37, caput e §1º, CF/88) proíbe que nomes, símbolos ou imagens que caracterizem promoção pessoal de autoridades ou servidores constem de publicidade de atos, programas, obras, serviços e campanhas dos órgãos públicos.',
-      difficulty: 'EASY',
-    },
-    {
-      id: 'q-admin-02',
-      topic_id: 'top-4',
-      subject_id: 'subj-admin',
-      statement: 'Em matéria de Atos Administrativos, assinale a opção que indica corretamente o atributo segundo o qual o ato administrativo se presume editado em conformidade com o ordenamento jurídico até prova em contrário:',
-      options: [
-        'Presunção de Legitimidade e Veracidade.',
-        'Autoexecutoriedade.',
-        'Tipicidade.',
-        'Imperatividade.',
-        'Exigibilidade.'
-      ],
-      correct_option: 'Presunção de Legitimidade e Veracidade.',
-      explanation: 'A presunção de legitimidade e veracidade é atributo inerente aos atos administrativos, operando de forma relativa (juris tantum), invertendo o ônus da prova para quem alega a ilegalidade do ato estatal.',
-      difficulty: 'EASY',
-    },
-    // Língua Portuguesa
-    {
-      id: 'q-port-01',
-      topic_id: 'top-6',
-      subject_id: 'subj-port',
-      statement: 'Assinale a alternativa que apresenta a oração em estrita conformidade com a norma-padrão de concordância verbal:',
-      options: [
-        'Fazem dez anos que os novos métodos de auditoria foram implementados na repartição.',
-        'Haviam muitos candidatos inscritos no processo seletivo deste certame.',
-        'Houve bastantes dúvidas durante a aplicação da prova discursiva.',
-        'Precisam-se de novos servidores capacitados em análise de dados públicos.',
-        'Mais de um concurseiro cumprimentaram-se cordialmente antes do início da prova.'
-      ],
-      correct_option: 'Houve bastantes dúvidas durante a aplicação da prova discursiva.',
-      explanation: 'O verbo "haver" no sentido de existir ou ocorrer é impessoal e deve ficar na 3ª pessoa do singular ("Houve dúvidas"). "Bastantes" funciona como pronome adjetivo (= muitas) e concorda com "dúvidas". Nas outras opções: "Faz dez anos" (tempo decorrido é impessoal), "Havia muitos" (impessoal), "Precisa-se de novos servidores" (voz passiva com índice de indeterminação não flexiona).',
-      difficulty: 'MEDIUM',
-    },
-    // RLM
-    {
-      id: 'q-rlm-01',
-      topic_id: 'top-8',
-      subject_id: 'subj-rlm',
-      statement: 'Considere a proposição lógica condicional: "Se o candidato estuda com constância, então ele é aprovado no concurso". A negação lógica rigorosa dessa proposição é expressa por:',
-      options: [
-        'O candidato estuda com constância e não é aprovado no concurso.',
-        'Se o candidato não estuda com constância, então ele não é aprovado.',
-        'O candidato não estuda com constância ou é aprovado no concurso.',
-        'O candidato não é aprovado no concurso e não estuda com constância.',
-        'Se o candidato for aprovado no concurso, então ele estudou com constância.'
-      ],
-      correct_option: 'O candidato estuda com constância e não é aprovado no concurso.',
-      explanation: 'Pela regra de equivalência e negação da condicional ~(p -> q) <-> p ^ ~q (conhecida mnemônica "MANÉ": Mantém a primeira E Nega a segunda). Portanto: "O candidato estuda com constância E não é aprovado no concurso".',
-      difficulty: 'MEDIUM',
-    }
-  ];
-
   const insertQ = db.prepare(`
     INSERT INTO questions (id, exam_id, subject_id, topic_id, statement, options, correct_option, explanation, difficulty, source_type, year)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
 
-  for (const q of questionsData) {
+  for (const q of ALL_SEED_QUESTIONS) {
     insertQ.run(
       q.id,
       examId,
@@ -474,12 +822,50 @@ function seedLocalDatabaseIfEmpty(db: any) {
   db.prepare(`
     INSERT INTO user_attempts (id, user_id, question_id, topic_id, selected_option, is_correct, time_spent_seconds)
     VALUES (?, ?, ?, ?, ?, ?, ?)
-  `).run('att-1', userId, 'q-const-01', 'top-1', questionsData[0].correct_option, 1, 45);
+  `).run('att-1', userId, 'q-const-01', 'top-1', ALL_SEED_QUESTIONS[0].correct_option, 1, 45);
 
   db.prepare(`
     INSERT INTO user_attempts (id, user_id, question_id, topic_id, selected_option, is_correct, time_spent_seconds)
     VALUES (?, ?, ?, ?, ?, ?, ?)
-  `).run('att-2', userId, 'q-admin-01', 'top-3', questionsData[2].correct_option, 1, 35);
+  `).run('att-2', userId, 'q-admin-01', 'top-3', ALL_SEED_QUESTIONS[2].correct_option, 1, 35);
 
   console.log('[LocalDB] Banco de dados local inicializado com sucesso.');
+}
+
+function ensureQuestionsSeeded(db: any, examId: string = 'exam-local-cnu') {
+  try {
+    const existing = db.prepare('SELECT id FROM questions').all() as { id: string }[];
+    const existingSet = new Set(existing.map((r: any) => r.id));
+
+    const insertQ = db.prepare(`
+      INSERT INTO questions (id, exam_id, subject_id, topic_id, statement, options, correct_option, explanation, difficulty, source_type, year)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    let addedCount = 0;
+    for (const q of ALL_SEED_QUESTIONS) {
+      if (!existingSet.has(q.id)) {
+        insertQ.run(
+          q.id,
+          examId,
+          q.subject_id,
+          q.topic_id,
+          q.statement,
+          JSON.stringify(q.options),
+          q.correct_option,
+          q.explanation,
+          q.difficulty,
+          'OFFICIAL',
+          2026
+        );
+        addedCount++;
+      }
+    }
+
+    if (addedCount > 0) {
+      console.log(`[LocalDB] ${addedCount} novas questões inseridas com sucesso no banco local.`);
+    }
+  } catch (err) {
+    console.error('[LocalDB] Erro ao sincronizar questões no banco local:', err);
+  }
 }
