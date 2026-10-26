@@ -3,10 +3,11 @@
 import { useState } from 'react';
 import { QuestionPlayer, Question } from './QuestionPlayer';
 import { AILearningPanel } from './AILearningPanel';
+import { SchematizedTheoryView } from '@/components/study/SchematizedTheoryView';
 import { FinishSessionForm } from '@/components/forms/FinishSessionForm';
 import { ReasonList } from './ReasonList';
 import { TopicRecommendation } from '@/domain/study-intelligence/types';
-import { Target, Sparkles, Clock, ChevronDown, CheckCircle2, Zap } from 'lucide-react';
+import { Target, BookOpen, Sparkles, Clock, ChevronDown, CheckCircle2, Zap, Layers } from 'lucide-react';
 import Link from 'next/link';
 
 interface StudyRoomTabsProps {
@@ -18,6 +19,9 @@ interface StudyRoomTabsProps {
     confidence: string;
     reason: string;
   } | null;
+  initialNote?: string;
+  allTopics?: { id: string; name: string; subjectName?: string }[];
+  initialTab?: 'practice' | 'theory' | 'ai' | 'manual';
 }
 
 export function StudyRoomTabs({
@@ -25,8 +29,11 @@ export function StudyRoomTabs({
   questions,
   examId,
   adaptiveRec,
+  initialNote = '',
+  allTopics = [],
+  initialTab = 'theory',
 }: StudyRoomTabsProps) {
-  const [activeTab, setActiveTab] = useState<'practice' | 'theory' | 'manual'>('practice');
+  const [activeTab, setActiveTab] = useState<'practice' | 'theory' | 'ai' | 'manual'>(initialTab);
 
   const priorityConfig: Record<string, { label: string; bg: string }> = {
     CRITICAL: { label: 'Crítico', bg: 'bg-rose-50 text-rose-700 border-rose-200' },
@@ -42,8 +49,8 @@ export function StudyRoomTabs({
     <div className="space-y-6">
       {/* Banner do Tópico Prioritário */}
       <div className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-xs space-y-4">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="space-y-2">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+          <div className="space-y-2 flex-1">
             <div className="flex flex-wrap items-center gap-2">
               <span className={`px-2.5 py-0.5 text-xs font-bold rounded-full border ${currentPriority.bg}`}>
                 {currentPriority.label}
@@ -63,22 +70,55 @@ export function StudyRoomTabs({
               {recommendation.topicName}
             </h1>
 
-            <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-500 font-medium">
-              <Clock className="w-4 h-4 text-slate-400" />
-              <span>Tempo de foco planejado:</span>
-              <span className="font-bold text-slate-900 bg-slate-100 px-2 py-0.5 rounded">
-                {Math.round(recommendation.recommendedHours * 60)} min
-              </span>
+            <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-slate-500 font-medium pt-1">
+              <div className="flex items-center gap-1.5">
+                <Clock className="w-4 h-4 text-slate-400" />
+                <span>Tempo de foco:</span>
+                <span className="font-bold text-slate-900 bg-slate-100 px-2 py-0.5 rounded">
+                  {Math.round(recommendation.recommendedHours * 60)} min
+                </span>
+              </div>
+
+              {allTopics.length > 0 && (
+                <div className="flex items-center gap-1.5">
+                  <span className="text-slate-400">|</span>
+                  <span>Mudar tópico:</span>
+                  <select
+                    value={recommendation.topicId}
+                    onChange={(e) => {
+                      window.location.href = `/study?topicId=${e.target.value}`;
+                    }}
+                    className="text-xs font-bold text-slate-800 bg-slate-50 border border-slate-200 rounded-lg px-2 py-0.5 outline-hidden cursor-pointer hover:bg-slate-100 transition-colors max-w-[200px] truncate"
+                  >
+                    {allTopics.map((t) => (
+                      <option key={t.id} value={t.id}>
+                        {t.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
             </div>
           </div>
 
-          <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-left md:text-right flex-shrink-0">
-            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
-              Acervo neste tópico
-            </span>
-            <span className="text-xl font-black text-slate-900 font-mono">
-              {questions.length} <span className="text-xs font-sans text-slate-500 font-medium">questões</span>
-            </span>
+          <div className="flex sm:flex-col gap-2 shrink-0">
+            <div className="bg-slate-50 p-3 sm:p-4 rounded-xl border border-slate-100 text-left sm:text-right flex-1 sm:flex-initial">
+              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                Acervo no Tópico
+              </span>
+              <span className="text-xl font-black text-slate-900 font-mono">
+                {questions.length} <span className="text-xs font-sans text-slate-500 font-medium">questões</span>
+              </span>
+            </div>
+
+            <Link
+              href="/flashcards"
+              className="inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold rounded-xl border border-indigo-200/60 transition-colors"
+              title="Acessar Flashcards deste Edital"
+            >
+              <Layers className="w-3.5 h-3.5" />
+              <span>Ver Flashcards</span>
+            </Link>
           </div>
         </div>
 
@@ -105,10 +145,22 @@ export function StudyRoomTabs({
       </div>
 
       {/* Segmented Control Tabs */}
-      <div className="p-1 bg-slate-200/70 rounded-xl flex gap-1 text-xs sm:text-sm font-semibold max-w-xl overflow-x-auto scrollbar-none">
+      <div className="p-1 bg-slate-200/70 rounded-xl flex gap-1 text-xs sm:text-sm font-semibold max-w-2xl overflow-x-auto scrollbar-none">
+        <button
+          onClick={() => setActiveTab('theory')}
+          className={`flex-1 min-w-[150px] sm:min-w-0 py-2.5 px-3 rounded-lg transition-all flex items-center justify-center gap-2 whitespace-nowrap ${
+            activeTab === 'theory'
+              ? 'bg-white text-slate-950 shadow-xs font-bold'
+              : 'text-slate-600 hover:text-slate-900'
+          }`}
+        >
+          <BookOpen className="w-4 h-4 text-indigo-600" />
+          <span>Teoria & Lei Seca</span>
+        </button>
+
         <button
           onClick={() => setActiveTab('practice')}
-          className={`flex-1 min-w-[130px] sm:min-w-0 py-2.5 px-3 rounded-lg transition-all flex items-center justify-center gap-2 whitespace-nowrap ${
+          className={`flex-1 min-w-[140px] sm:min-w-0 py-2.5 px-3 rounded-lg transition-all flex items-center justify-center gap-2 whitespace-nowrap ${
             activeTab === 'practice'
               ? 'bg-white text-slate-950 shadow-xs font-bold'
               : 'text-slate-600 hover:text-slate-900'
@@ -122,15 +174,15 @@ export function StudyRoomTabs({
         </button>
 
         <button
-          onClick={() => setActiveTab('theory')}
+          onClick={() => setActiveTab('ai')}
           className={`flex-1 min-w-[110px] sm:min-w-0 py-2.5 px-3 rounded-lg transition-all flex items-center justify-center gap-2 whitespace-nowrap ${
-            activeTab === 'theory'
+            activeTab === 'ai'
               ? 'bg-white text-slate-950 shadow-xs font-bold'
               : 'text-slate-600 hover:text-slate-900'
           }`}
         >
           <Sparkles className="w-4 h-4 text-indigo-600" />
-          <span>Teoria & IA</span>
+          <span>Tutor IA</span>
         </button>
 
         <button
@@ -142,12 +194,19 @@ export function StudyRoomTabs({
           }`}
         >
           <Clock className="w-4 h-4 text-slate-500" />
-          <span>Registro Externo</span>
+          <span>Registro Sessão</span>
         </button>
       </div>
 
       {/* Tab Panels */}
       <div>
+        {activeTab === 'theory' && (
+          <SchematizedTheoryView
+            topicId={recommendation.topicId}
+            initialNote={initialNote}
+          />
+        )}
+
         {activeTab === 'practice' && (
           <div>
             {questions.length > 0 ? (
@@ -162,7 +221,7 @@ export function StudyRoomTabs({
                     onClick={() => setActiveTab('theory')}
                     className="px-4 py-2.5 bg-indigo-600 text-white rounded-xl font-bold text-xs shadow-xs hover:bg-indigo-700 transition-colors"
                   >
-                    Aprender Teoria com IA
+                    Estudar Teoria Esquematizada
                   </button>
                   <Link
                     href="/questions/solve"
@@ -176,7 +235,7 @@ export function StudyRoomTabs({
           </div>
         )}
 
-        {activeTab === 'theory' && (
+        {activeTab === 'ai' && (
           <AILearningPanel
             examId={examId}
             topicId={recommendation.topicId}

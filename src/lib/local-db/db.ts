@@ -678,6 +678,15 @@ export function getLocalDatabase(): any {
       last_reviewed_at TEXT,
       created_at TEXT DEFAULT (datetime('now'))
     );
+
+    CREATE TABLE IF NOT EXISTS topic_notes (
+      id TEXT PRIMARY KEY,
+      user_id TEXT NOT NULL,
+      topic_id TEXT NOT NULL,
+      content TEXT NOT NULL,
+      updated_at TEXT DEFAULT (datetime('now')),
+      UNIQUE(user_id, topic_id)
+    );
   `);
 
   // Auto-seed if exams table is empty
