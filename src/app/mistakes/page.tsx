@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import { getAggregatedPerformanceData } from '@/services/data-intelligence/performanceService';
 import { generateAdaptiveSchedule } from '@/domain/study-intelligence';
 import Link from 'next/link';
-import { AlertCircle, ArrowLeft, ArrowUpRight, CheckCircle2, Zap } from 'lucide-react';
+import { AlertCircle, ArrowLeft, ArrowUpRight, CheckCircle2, Layers, Zap } from 'lucide-react';
 
 export default async function MistakesPage() {
   const supabase = await createClient();
@@ -119,10 +119,18 @@ export default async function MistakesPage() {
                   </h3>
                 </div>
 
-                <div className="w-full sm:w-auto flex items-center gap-3">
+                <div className="w-full sm:w-auto flex items-center gap-2">
+                  <Link
+                    href="/flashcards"
+                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-colors"
+                    title="Revisar no Anki/Flashcards"
+                  >
+                    <Layers className="w-3.5 h-3.5 text-indigo-600" />
+                    <span>Cards</span>
+                  </Link>
                   <Link
                     href={`/questions/solve?topicId=${mistake.topicId}`}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-3.5 py-2 sm:py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-xs transition-colors"
+                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-xs transition-colors"
                   >
                     <span>Superar Erros</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />

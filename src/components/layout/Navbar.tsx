@@ -13,7 +13,8 @@ import {
   MessageSquare,
   LogOut,
   GraduationCap,
-  Timer
+  Timer,
+  Layers
 } from 'lucide-react';
 
 export function Navbar() {
@@ -28,6 +29,7 @@ export function Navbar() {
     { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
     { label: 'Estudar Agora', href: '/study', icon: Target, highlight: true },
     { label: 'Simulados', href: '/simulados', icon: Timer },
+    { label: 'Flashcards', href: '/flashcards', icon: Layers },
     { label: 'Questões', href: '/questions', icon: HelpCircle },
     { label: 'Bateria Rápida', href: '/questions/solve', icon: Zap },
     { label: 'Caderno de Erros', href: '/mistakes', icon: AlertCircle },

@@ -661,6 +661,23 @@ export function getLocalDatabase(): any {
       created_at TEXT DEFAULT (datetime('now')),
       completed_at TEXT
     );
+
+    CREATE TABLE IF NOT EXISTS flashcards (
+      id TEXT PRIMARY KEY,
+      user_id TEXT NOT NULL,
+      exam_id TEXT NOT NULL,
+      topic_id TEXT NOT NULL,
+      front TEXT NOT NULL,
+      back TEXT NOT NULL,
+      category TEXT DEFAULT 'GERAL',
+      repetition_count INTEGER DEFAULT 0,
+      interval_days INTEGER DEFAULT 0,
+      ease_factor REAL DEFAULT 2.5,
+      due_date TEXT DEFAULT (date('now')),
+      status TEXT DEFAULT 'NEW',
+      last_reviewed_at TEXT,
+      created_at TEXT DEFAULT (datetime('now'))
+    );
   `);
 
   // Auto-seed if exams table is empty
@@ -668,6 +685,9 @@ export function getLocalDatabase(): any {
 
   // Ensure latest questions are present
   ensureQuestionsSeeded(db);
+
+  // Ensure latest flashcards are present
+  ensureFlashcardsSeeded(db);
 
   dbInstance = db;
   return db;
@@ -867,5 +887,179 @@ function ensureQuestionsSeeded(db: any, examId: string = 'exam-local-cnu') {
     }
   } catch (err) {
     console.error('[LocalDB] Erro ao sincronizar questões no banco local:', err);
+  }
+}
+
+export const ALL_SEED_FLASHCARDS = [
+  // Direito Constitucional (top-1 e top-2)
+  {
+    id: 'fc-const-01',
+    topic_id: 'top-1',
+    front: 'Quais são os únicos 2 crimes expressamente INAFIANÇÁVEIS e IMPRESCRITÍVEIS segundo a CF/88 (Art. 5º)?',
+    back: 'Mnemônico RA-ÇÃO:\n• RA: Racismo (Art. 5º, XLII - sujeito a reclusão)\n• ÇÃO: Ação de grupos armados, civis ou militares, contra a ordem constitucional e o Estado Democrático (Art. 5º, XLIV).',
+    category: 'MNEMONICO'
+  },
+  {
+    id: 'fc-const-02',
+    topic_id: 'top-1',
+    front: 'Quais são os crimes inafiançáveis e INSUSCETÍVEIS de graça ou anistia (Art. 5º, XLIII)?',
+    back: 'Mnemônico 3T + H:\n• Tortura\n• Tráfico ilícito de entorpecentes\n• Terrorismo\n• Hediondos\n\n⚠️ Atenção: Eles prescrevem! Os únicos imprescritíveis são Racismo e Ação de grupos armados.',
+    category: 'MNEMONICO'
+  },
+  {
+    id: 'fc-const-03',
+    topic_id: 'top-1',
+    front: 'Quais remédios constitucionais são gratuitos por expressa determinação constitucional (Art. 5º)?',
+    back: '1. Habeas Corpus (gratuito sempre)\n2. Habeas Data (gratuito sempre)\n3. Ação Popular (gratuita, salvo comprovada má-fé do autor).',
+    category: 'LEI_SECA'
+  },
+  {
+    id: 'fc-const-04',
+    topic_id: 'top-1',
+    front: 'Quando é constitucionalmente lícito penetrar no domicílio alheio SEM consentimento à NOITE?',
+    back: 'Somente em 3 hipóteses (Art. 5º, XI):\n1. Flagrante delito;\n2. Desastre;\n3. Para prestar socorro.\n\n⚠️ CUIDADO: Por determinação judicial só é permitido durante o DIA!',
+    category: 'LEI_SECA'
+  },
+  {
+    id: 'fc-const-05',
+    topic_id: 'top-2',
+    front: 'Quais são as 4 Cláusulas Pétreas expressas no Art. 60, § 4º da CF/88?',
+    back: 'Mnemônico FO-VO-SE-DI:\n• FO: Forma federativa de Estado\n• VO: Voto direto, secreto, universal e periódico (não a obrigatoriedade!)\n• SE: Separação dos Poderes\n• DI: Direitos e garantias individuais',
+    category: 'MNEMONICO'
+  },
+
+  // Direito Administrativo (top-3 e top-4)
+  {
+    id: 'fc-admin-01',
+    topic_id: 'top-3',
+    front: 'Quais são os 5 Princípios Constitucionais Expressos da Administração Pública (Art. 37, caput)?',
+    back: 'Mnemônico L.I.M.P.E.:\n• L: Legalidade\n• I: Impessoalidade\n• M: Moralidade\n• P: Publicidade\n• E: Eficiência (acrescentado pela EC 19/98)',
+    category: 'MNEMONICO'
+  },
+  {
+    id: 'fc-admin-02',
+    topic_id: 'top-3',
+    front: 'Qual a diferença entre ANULAÇÃO e REVOGAÇÃO de um ato administrativo (Súmula 473 STF)?',
+    back: '• Anulação: incide sobre atos ILEGAIS. Efeito retroativo (ex tunc). Feita pela Administração ou Judiciário.\n• Revogação: incide sobre atos legais por motivo de CONVENIÊNCIA e OPORTUNIDADE. Efeito prospectivo (ex nunc). Feita exclusivamente pela Administração.',
+    category: 'JURISPRUDENCIA'
+  },
+  {
+    id: 'fc-admin-03',
+    topic_id: 'top-3',
+    front: 'Até qual grau de parentesco incide a vedação ao nepotismo fixada pela Súmula Vinculante 13 do STF?',
+    back: 'Até o 3º grau (em linha reta, colateral ou por afinidade):\n• 1º grau: pais e filhos\n• 2º grau: avós, netos e irmãos\n• 3º grau: tios e sobrinhos\n(Inclui cônjuge, companheiro e nepotismo cruzado).',
+    category: 'JURISPRUDENCIA'
+  },
+  {
+    id: 'fc-admin-04',
+    topic_id: 'top-4',
+    front: 'Quais são os 5 elementos de validade do ato administrativo e quais admitem convalidação?',
+    back: 'Mnemônico CO-FI-FO-MO-OB:\n• Competência\n• Finalidade\n• Forma\n• Motivo\n• Objeto\n\nConvalidação permitida: somente em vícios sanáveis de Competência (não exclusiva) e Forma (não essencial à validade).',
+    category: 'MNEMONICO'
+  },
+  {
+    id: 'fc-admin-05',
+    topic_id: 'top-4',
+    front: 'Quais são os principais atributos do ato administrativo?',
+    back: 'Mnemônico P.A.T.I.:\n• P: Presunção de legitimidade e veracidade (todos os atos possuem)\n• A: Autoexecutoriedade (execução direta sem necessidade prévia do Judiciário)\n• T: Tipicidade (deve corresponder a figura legal prévia)\n• I: Imperatividade (impõe obrigações a terceiros)',
+    category: 'DOUTRINA'
+  },
+
+  // Língua Portuguesa (top-5 e top-6)
+  {
+    id: 'fc-port-01',
+    topic_id: 'top-6',
+    front: 'Como se conjuga o verbo HAVER quando empregado com sentido de existir, ocorrer ou tempo decorrido?',
+    back: 'O verbo "haver" é impessoal! Não possui sujeito e permanece SEMPRE na 3ª pessoa do singular.\nEx: "Houve muitas dúvidas" (e NUNCA "houveram muitas dúvidas"); "Há três anos" (e não "fazem três anos").',
+    category: 'LEI_SECA'
+  },
+  {
+    id: 'fc-port-02',
+    topic_id: 'top-6',
+    front: 'Cite os 4 casos mais comuns em que o uso da crase é TERMINANTEMENTE PROIBIDO em provas:',
+    back: '1. Antes de palavras masculinas (ex: a pé, a cavalo, a prazo)\n2. Antes de verbos (ex: a partir de, disposto a estudar)\n3. Entre palavras repetidas (ex: cara a cara, dia a dia)\n4. Antes de pronomes pessoais e de tratamento (ex: a ela, a você, a Vossa Senhoria)',
+    category: 'LEI_SECA'
+  },
+  {
+    id: 'fc-port-03',
+    topic_id: 'top-6',
+    front: 'Qual a regência do verbo ASPIRAR nos seus dois sentidos fundamentais?',
+    back: '1. Sentido de inalar/respirar: VTD (sem preposição). Ex: Aspirou o ar puro da manhã.\n2. Sentido de almejar/pretender: VTI (exige preposição "a"). Ex: O concurseiro aspira ao cargo público.',
+    category: 'LEI_SECA'
+  },
+  {
+    id: 'fc-port-04',
+    topic_id: 'top-6',
+    front: 'Qual é a regra de ouro de pontuação que NUNCA pode ser violada em uma oração padrão?',
+    back: 'NUNCA se separa com vírgula o Sujeito de seu respectivo Predicado, nem o Verbo de seus respectivos Complementos (objeto direto ou indireto).',
+    category: 'LEI_SECA'
+  },
+
+  // Raciocínio Lógico (top-7 e top-8)
+  {
+    id: 'fc-rlm-01',
+    topic_id: 'top-8',
+    front: 'Como se nega rigorosamente uma proposição condicional "Se P, então Q" (P -> Q)?',
+    back: 'Mnemônico MANÉ:\n• MA: Mantém a primeira parte (P)\n• NÉ: Nega a segunda parte (~Q)\nFórmula: ~(P -> Q) ≡ P ∧ ~Q\nExemplo: "Se estudo, passo" ➡️ "Estudo E não passo".',
+    category: 'MNEMONICO'
+  },
+  {
+    id: 'fc-rlm-02',
+    topic_id: 'top-8',
+    front: 'Qual é a principal equivalência lógica da condicional "Se P, então Q" (P -> Q)?',
+    back: 'A Contrapositiva (Inverte e Nega tudo):\n(P -> Q) ≡ (~Q -> ~P)\n\nExemplo: "Se bebo, não dirijo" ≡ "Se dirijo, não bebo".',
+    category: 'MNEMONICO'
+  },
+  {
+    id: 'fc-rlm-03',
+    topic_id: 'top-8',
+    front: 'Qual é a negação da proposição conjuntiva "P e Q" (P ∧ Q) segundo as Leis de De Morgan?',
+    back: 'Nega a primeira, troca o E pelo OU, e nega a segunda:\n~(P ∧ Q) ≡ ~P ∨ ~Q\n\nExemplo: "Estudo e trabalho" ➡️ "Não estudo OU não trabalho".',
+    category: 'MNEMONICO'
+  },
+  {
+    id: 'fc-rlm-04',
+    topic_id: 'top-7',
+    front: 'Como se nega logicamente a afirmação universal "Todo concurseiro é dedicado"?',
+    back: 'Mnemônico PEA + NÃO:\n• P: Pelo menos um\n• E: Existe um\n• A: Algum\n+ NÃO é dedicado!\n\n⚠️ CUIDADO: NUNCA se nega "Todo" com "Nenhum"!',
+    category: 'MNEMONICO'
+  }
+];
+
+function ensureFlashcardsSeeded(db: any, examId: string = 'exam-local-cnu', userId: string = 'local-user-id') {
+  try {
+    const existing = db.prepare('SELECT id FROM flashcards').all() as { id: string }[];
+    const existingSet = new Set(existing.map((r: any) => r.id));
+
+    const insertFc = db.prepare(`
+      INSERT INTO flashcards (id, user_id, exam_id, topic_id, front, back, category, repetition_count, interval_days, ease_factor, due_date, status)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, date('now'), ?)
+    `);
+
+    let addedCount = 0;
+    for (const fc of ALL_SEED_FLASHCARDS) {
+      if (!existingSet.has(fc.id)) {
+        insertFc.run(
+          fc.id,
+          userId,
+          examId,
+          fc.topic_id,
+          fc.front,
+          fc.back,
+          fc.category,
+          0,
+          0,
+          2.5,
+          'NEW'
+        );
+        addedCount++;
+      }
+    }
+
+    if (addedCount > 0) {
+      console.log(`[LocalDB] ${addedCount} novos flashcards inseridos com sucesso no banco local.`);
+    }
+  } catch (err) {
+    console.error('[LocalDB] Erro ao sincronizar flashcards no banco local:', err);
   }
 }
