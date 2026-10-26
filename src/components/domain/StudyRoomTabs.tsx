@@ -7,7 +7,8 @@ import { SchematizedTheoryView } from '@/components/study/SchematizedTheoryView'
 import { FinishSessionForm } from '@/components/forms/FinishSessionForm';
 import { ReasonList } from './ReasonList';
 import { TopicRecommendation } from '@/domain/study-intelligence/types';
-import { Target, BookOpen, Sparkles, Clock, ChevronDown, CheckCircle2, Zap, Layers } from 'lucide-react';
+import { Target, BookOpen, Sparkles, Clock, ChevronDown, CheckCircle2, Zap, Layers, Flame } from 'lucide-react';
+import { useFocus } from '@/context/FocusContext';
 import Link from 'next/link';
 
 interface StudyRoomTabsProps {
@@ -34,6 +35,12 @@ export function StudyRoomTabs({
   initialTab = 'theory',
 }: StudyRoomTabsProps) {
   const [activeTab, setActiveTab] = useState<'practice' | 'theory' | 'ai' | 'manual'>(initialTab);
+  const { startFocus, setIsFullscreenZen } = useFocus();
+
+  const handleEnterZenFocus = () => {
+    startFocus(recommendation.topicId, recommendation.topicName);
+    setIsFullscreenZen(true);
+  };
 
   const priorityConfig: Record<string, { label: string; bg: string }> = {
     CRITICAL: { label: 'Crítico', bg: 'bg-rose-50 text-rose-700 border-rose-200' },
@@ -101,15 +108,15 @@ export function StudyRoomTabs({
             </div>
           </div>
 
-          <div className="flex sm:flex-col gap-2 shrink-0">
-            <div className="bg-slate-50 p-3 sm:p-4 rounded-xl border border-slate-100 text-left sm:text-right flex-1 sm:flex-initial">
-              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
-                Acervo no Tópico
-              </span>
-              <span className="text-xl font-black text-slate-900 font-mono">
-                {questions.length} <span className="text-xs font-sans text-slate-500 font-medium">questões</span>
-              </span>
-            </div>
+          <div className="flex flex-wrap sm:flex-col gap-2 shrink-0">
+            <button
+              onClick={handleEnterZenFocus}
+              className="inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white text-xs font-bold rounded-xl shadow-xs transition-all cursor-pointer"
+              title="Entrar em Foco Total (Pomodoro Zen & Ruído Ambiente)"
+            >
+              <Flame className="w-3.5 h-3.5 text-amber-300" />
+              <span>Modo Foco Zen</span>
+            </button>
 
             <Link
               href="/flashcards"

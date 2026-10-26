@@ -10,15 +10,18 @@ import {
   AlertCircle, 
   RefreshCw, 
   BarChart3, 
-  MessageSquare,
-  LogOut,
-  GraduationCap,
-  Timer,
-  Layers
+  MessageSquare, 
+  LogOut, 
+  GraduationCap, 
+  Timer, 
+  Layers,
+  Flame
 } from 'lucide-react';
+import { useFocus } from '@/context/FocusContext';
 
 export function Navbar() {
   const pathname = usePathname();
+  const { isActive, secondsRemaining, phase, toggleFullscreenZen, startFocus, isPaused } = useFocus();
 
   // Don't show navbar on login or onboarding pages
   if (pathname === '/login' || pathname === '/onboarding') {
@@ -112,6 +115,29 @@ export function Navbar() {
 
           {/* Right Action Items */}
           <div className="flex items-center gap-2">
+            {isActive ? (
+              <button
+                onClick={toggleFullscreenZen}
+                className="inline-flex items-center gap-1.5 text-xs font-mono font-black text-indigo-700 bg-indigo-50 border border-indigo-200/80 px-2.5 py-1.5 rounded-xl shadow-xs hover:bg-indigo-100 transition-all cursor-pointer"
+                title="Modo Foco em andamento (Clique para Tela Cheia Zen)"
+              >
+                <span className={`w-2 h-2 rounded-full ${isPaused ? 'bg-amber-500' : 'bg-indigo-600 animate-pulse'}`} />
+                <span>
+                  {Math.floor(secondsRemaining / 60).toString().padStart(2, '0')}:{(secondsRemaining % 60).toString().padStart(2, '0')}
+                </span>
+                <Flame className="w-3.5 h-3.5 text-amber-500" />
+              </button>
+            ) : (
+              <button
+                onClick={() => startFocus()}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-indigo-600 bg-white hover:bg-slate-50 px-2.5 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs transition-all cursor-pointer"
+                title="Iniciar Modo Foco Zen (Pomodoro)"
+              >
+                <Flame className="w-3.5 h-3.5 text-amber-500" />
+                <span className="hidden sm:inline">Modo Foco</span>
+              </button>
+            )}
+
             <Link
               href="/feedback"
               className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 transition-colors border border-transparent hover:border-slate-200/80"
