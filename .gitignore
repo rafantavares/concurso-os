@@ -33,7 +33,7 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 !.env.example
-!_temp_transfer/**
+_temp_transfer/
 
 # sqlite lock files
 *.db-wal
